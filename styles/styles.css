@@ -27,6 +27,7 @@ body {
   
   #cube {
     padding: 20px;
+    margin: 10% auto;
     width: 15px;
     height: 15px;
     background-color: blueviolet;
@@ -36,4 +37,22 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: transform 0.300ms ease-in-out, opacity 0.300ms ease-in-out;
+    opacity: 1;
+  }
+
+  #cube2 {
+    padding: 20px;
+    margin: 10% auto;
+    width: 15px;
+    height: 15px;
+    background-color: blue;
+    border: solid 2px black;
+    border-radius: 4px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.300ms ease-in-out, opacity 0.300ms ease-in-out;
+    opacity: 1;
   }
