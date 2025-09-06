@@ -21,7 +21,8 @@ function updateCube() {
    // Mise à jour de l'échelle du cube
     const base = compteur - 5;
     const scale = Math.min(2, Math.max(1, 1 + base * 0.1));
-    cube.style.transform = `scale(${scale})`;
+    const angle = (compteur % 2 === 0) ? 45 : 0;
+    cube.style.transform = `scale(${scale}) rotate(${angle}deg)`;
 };
 
 function updateCube2() {
@@ -72,3 +73,65 @@ document.getElementById("reset").addEventListener("click", () => {
     updateCube2();
     updateMessage();
 });
+
+// Controle avec les touches du clavier
+document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowUp") {
+        if (compteur < 20) {
+            compteur++;
+        }
+        updateCube();
+        updateCube2();
+        updateMessage();
+    } else if (event.key === "ArrowDown") {
+        if (compteur > 0) {
+            compteur--;
+        }
+        updateCube();
+        updateCube2();
+        updateMessage();
+    }
+});
+
+// Auto-incrémentation tout les 200ms
+setInterval(() => {
+    if (clicked === "plus") {
+        if (compteur < 20) {
+            compteur++;
+        }
+    }
+    updateCube();
+    updateCube2();
+    updateMessage();
+}, 200);
+
+let clicked = null;
+
+// Détection du clic maintenu sur le bouton "+"
+document.getElementById("plus").addEventListener("mousedown", () => {
+    clicked = "plus";
+});
+
+document.getElementById("plus").addEventListener("mouseup", () => {
+    clicked = null;
+});
+
+document.getElementById("moins").addEventListener("mousedown", () => {
+    clicked = "moins";
+});
+
+document.getElementById("moins").addEventListener("mouseup", () => {
+    clicked = null;
+});
+
+// Auto-décrémentation tout les 200ms
+setInterval(() => {
+    if (clicked === "moins") {
+        if (compteur > 0) {
+            compteur--;
+        }
+        updateCube();
+        updateCube2();
+        updateMessage();
+    }
+}, 200);
