@@ -135,3 +135,22 @@ setInterval(() => {
         updateMessage();
     }
 }, 200);
+
+// Utilisation de local storage pour conserver la valeur du compteur
+window.addEventListener("load", () => {
+    const savedValue = localStorage.getItem("compteur");
+    if (savedValue !== null) {
+        compteur = parseInt(savedValue, 10);
+    }
+    updateCube();
+    updateCube2();
+    updateMessage();
+});
+
+// Sauvegarde de la valeur du compteur dans le local storage
+window.addEventListener("beforeunload", () => {
+    localStorage.setItem("compteur", compteur);
+});
+
+// Afficher les 5 dernières valeurs du compteur
+const historyList = document.getElementById("history-list");
